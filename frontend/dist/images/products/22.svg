@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" fill="#f8fafc"/>
+  <rect x="50" y="80" width="100" height="80" rx="3" fill="#ef4444"/>
+  <rect x="55" y="85" width="90" height="70" rx="2" fill="#f87171"/>
+  <rect x="60" y="70" width="10" height="15" fill="#dc2626"/>
+  <rect x="130" y="70" width="10" height="15" fill="#dc2626"/>
+  <rect x="60" y="160" width="10" height="20" fill="#dc2626"/>
+  <rect x="130" y="160" width="10" height="20" fill="#dc2626"/>
+  <ellipse cx="100" cy="120" rx="30" ry="20" fill="#fca5a5" opacity="0.5"/>
+  <text x="100" y="50" font-size="10" fill="#475569" text-anchor="middle" font-weight="bold">Plastic Chair</text>
+  <text x="100" y="125" font-size="8" fill="#991b1b" text-anchor="middle">DURABLE</text>
+</svg>

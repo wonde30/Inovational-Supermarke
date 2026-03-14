@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dark Mode Color Variants Verification</title>
+  <link rel="stylesheet" href="../assets/theme.css">
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      padding: 2rem;
+      background: var(--bg-main);
+      color: var(--text-primary);
+    }
+    
+    .test-section {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+    }
+    
+    .test-result {
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+      border-radius: 4px;
+    }
+    
+    .test-pass {
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #22c55e;
+    }
+    
+    .test-fail {
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #ef4444;
+    }
+    
+    .color-swatch {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      border: 1px solid #000;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    
+    button {
+      padding: 0.75rem 1.5rem;
+      margin: 0.5rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+    
+    .toggle-btn {
+      background: var(--color-brand-primary);
+      color: white;
+    }
+    
+    .toggle-btn:hover {
+      opacity: 0.9;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    
+    th, td {
+      padding: 0.75rem;
+      text-align: left;
+      border: 1px solid var(--border-color);
+    }
+    
+    th {
+      background: var(--bg-section);
+      font-weight: 600;
+    }
+    
+    .summary {
+      font-size: 1.25rem;
+      font-weight: 600;
+      padding: 1rem;
+      margin-top: 2rem;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Dark Mode Color Variants Verification</h1>
+  <p>Task 8.1: Verify dark mode color variants - Requirements 9.1, 9.4</p>
+  
+  <div class="test-section">
+    <h2>Theme Toggle Test</h2>
+    <button class="toggle-btn" onclick="toggleTheme()">Toggle Dark Mode</button>
+    <button class="toggle-btn" onclick="testLocalStorage()">Test localStorage Persistence</button>
+    <div id="theme-status"></div>
+    <div id="localStorage-status"></div>
+  </div>
+  
+  <div class="test-section">
+    <h2>CSS Variables Verification</h2>
+    <p>Checking that all light mode CSS variables have dark mode equivalents...</p>
+    <div id="css-variables-results"></div>
+  </div>
+  
+  <div class="test-section">
+    <h2>Color Comparison Table</h2>
+    <table id="color-table">
+      <thead>
+        <tr>
+          <th>Variable Name</th>
+          <th>Light Mode Value</th>
+          <th>Dark Mode Value</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="color-table-body"></tbody>
+    </table>
+  </div>
+  
+  <div id="summary" class="summary"></div>
+
+  <script>
+    // Required CSS variables from requirements
+    const requiredVariables = [
+      // Brand Colors
+      '--color-brand-primary',
+      '--color-brand-secondary',
+      '--color-brand-accent',
+      
+      // Semantic Colors
+      '--color-success',
+      '--color-warning',
+      '--color-active',
+      
+      // Backgrounds
+      '--bg-main',
+      '--bg-card',
+      '--bg-section',
+      '--bg-hover',
+      
+      // Text Colors
+      '--text-primary',
+      '--text-secondary',
+      '--text-disabled',
+      
+      // Borders
+      '--border-color'
+    ];
+
+    function getComputedVariable(varName, isDark = false) {
+      const testDiv = document.createElement('div');
+      if (isDark) {
+        testDiv.className = 'dark';
+      }
+      document.body.appendChild(testDiv);
+      const value = getComputedStyle(testDiv).getPropertyValue(varName).trim();
+      document.body.removeChild(testDiv);
+      return value;
+    }
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      const isDark = html.classList.contains('dark');
+      
+      if (isDark) {
+        html.classList.remove('dark');
+        html.removeAttribute('data-theme');
+      } else {
+        html.classList.add('dark');
+        html.setAttribute('data-theme', 'dark');
+      }
+      
+      updateThemeStatus();
+      verifyColorVariables();
+    }
+
+    function updateThemeStatus() {
+      const isDark = document.documentElement.classList.contains('dark');
+      const statusDiv = document.getElementById('theme-status');
+      statusDiv.innerHTML = `
+        <div class="test-result test-pass">
+          ✓ Current theme: <strong>${isDark ? 'Dark' : 'Light'}</strong>
+        </div>
+      `;
+    }
+
+    function testLocalStorage() {
+      const isDark = document.documentElement.classList.contains('dark');
+      const theme = isDark ? 'dark' : 'light';
+      
+      try {
+        // Test write
+        localStorage.setItem('theme', theme);
+        
+        // Test read
+        const savedTheme = localStorage.getItem('theme');
+        
+        const statusDiv = document.getElementById('localStorage-status');
+        if (savedTheme === theme) {
+          statusDiv.innerHTML = `
+            <div class="test-result test-pass">
+              ✓ localStorage persistence working correctly<br>
+              Saved theme: <strong>${savedTheme}</strong>
+            </div>
+          `;
+        } else {
+          statusDiv.innerHTML = `
+            <div class="test-result test-fail">
+              ✗ localStorage persistence failed<br>
+              Expected: ${theme}, Got: ${savedTheme}
+            </div>
+          `;
+        }
+      } catch (error) {
+        const statusDiv = document.getElementById('localStorage-status');
+        statusDiv.innerHTML = `
+          <div class="test-result test-fail">
+            ✗ localStorage error: ${error.message}
+          </div>
+        `;
+      }
+    }
+
+    function verifyColorVariables() {
+      const resultsDiv = document.getElementById('css-variables-results');
+      const tableBody = document.getElementById('color-table-body');
+      const results = [];
+      
+      tableBody.innerHTML = '';
+      
+      requiredVariables.forEach(varName => {
+        // Get light mode value
+        const lightValue = getComputedStyle(document.documentElement)
+          .getPropertyValue(varName).trim();
+        
+        // Get dark mode value by temporarily adding dark class
+        document.documentElement.classList.add('dark');
+        const darkValue = getComputedStyle(document.documentElement)
+          .getPropertyValue(varName).trim();
+        
+        // Restore original state
+        if (!document.documentElement.classList.contains('dark')) {
+          document.documentElement.classList.remove('dark');
+        }
+        
+        const hasBothValues = lightValue && darkValue;
+        const valuesDifferent = lightValue !== darkValue;
+        const passed = hasBothValues && valuesDifferent;
+        
+        results.push({
+          varName,
+          lightValue,
+          darkValue,
+          passed
+        });
+        
+        // Add row to table
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td><code>${varName}</code></td>
+          <td>
+            <span class="color-swatch" style="background: ${lightValue}"></span>
+            ${lightValue || 'Not defined'}
+          </td>
+          <td>
+            <span class="color-swatch" style="background: ${darkValue}"></span>
+            ${darkValue || 'Not defined'}
+          </td>
+          <td>${passed ? '✓ Pass' : '✗ Fail'}</td>
+        `;
+        row.style.background = passed ? '#f0fdf4' : '#fef2f2';
+        tableBody.appendChild(row);
+      });
+      
+      const passedCount = results.filter(r => r.passed).length;
+      const totalCount = results.length;
+      const allPassed = passedCount === totalCount;
+      
+      resultsDiv.innerHTML = `
+        <div class="test-result ${allPassed ? 'test-pass' : 'test-fail'}">
+          ${allPassed ? '✓' : '✗'} CSS Variables Check: ${passedCount}/${totalCount} passed
+        </div>
+      `;
+      
+      // Update summary
+      const summaryDiv = document.getElementById('summary');
+      summaryDiv.className = `summary ${allPassed ? 'test-pass' : 'test-fail'}`;
+      summaryDiv.innerHTML = `
+        <strong>Verification Summary:</strong><br>
+        ${allPassed ? '✓ All tests passed!' : '✗ Some tests failed'}<br>
+        ${passedCount}/${totalCount} CSS variables have proper dark mode variants
+      `;
+    }
+
+    // Run verification on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      updateThemeStatus();
+      verifyColorVariables();
+    });
+  </script>
+</body>
+</html>

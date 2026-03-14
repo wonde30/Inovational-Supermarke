@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" fill="#f8fafc"/>
+  <ellipse cx="100" cy="140" rx="45" ry="20" fill="#1e40af"/>
+  <ellipse cx="100" cy="60" rx="45" ry="20" fill="#1e40af"/>
+  <rect x="55" y="60" width="90" height="80" fill="#2563eb"/>
+  <ellipse cx="100" cy="60" rx="40" ry="15" fill="#3b82f6"/>
+  <text x="100" y="90" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="bold">VASELINE</text>
+  <text x="100" y="108" font-size="9" fill="#bfdbfe" text-anchor="middle">Petroleum Jelly</text>
+  <text x="100" y="130" font-size="10" fill="#ffffff" text-anchor="middle" font-weight="bold">250ml</text>
+  <text x="100" y="180" font-size="8" fill="#475569" text-anchor="middle">Moisturizing</text>
+</svg>

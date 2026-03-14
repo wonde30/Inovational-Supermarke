@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" fill="#f8fafc"/>
+  <rect x="50" y="40" width="100" height="130" rx="5" fill="#f1f5f9"/>
+  <rect x="55" y="45" width="90" height="120" rx="3" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="100" y="70" font-size="14" fill="#1e293b" text-anchor="middle" font-weight="bold">RICE</text>
+  <text x="100" y="88" font-size="10" fill="#64748b" text-anchor="middle">ሩዝ</text>
+  <ellipse cx="100" cy="120" rx="30" ry="15" fill="#fef3c7"/>
+  <ellipse cx="85" cy="118" rx="4" ry="2" fill="#fcd34d"/>
+  <ellipse cx="100" cy="115" rx="5" ry="2" fill="#fcd34d"/>
+  <ellipse cx="115" cy="120" rx="4" ry="2" fill="#fcd34d"/>
+  <ellipse cx="92" cy="125" rx="4" ry="2" fill="#fcd34d"/>
+  <ellipse cx="108" cy="123" rx="4" ry="2" fill="#fcd34d"/>
+  <text x="100" y="155" font-size="16" fill="#1e293b" text-anchor="middle" font-weight="bold">5kg</text>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" fill="#f8fafc"/>
+  <rect x="50" y="40" width="100" height="120" rx="5" fill="#f1f5f9"/>
+  <rect x="55" y="45" width="90" height="110" rx="3" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+  <text x="100" y="75" font-size="14" fill="#1e293b" text-anchor="middle" font-weight="bold">SUGAR</text>
+  <text x="100" y="95" font-size="10" fill="#64748b" text-anchor="middle">ስኳር</text>
+  <ellipse cx="100" cy="125" rx="30" ry="15" fill="#f8fafc"/>
+  <rect x="70" y="115" width="60" height="20" fill="#ffffff"/>
+  <circle cx="80" cy="125" r="3" fill="#e2e8f0"/>
+  <circle cx="95" cy="120" r="2" fill="#e2e8f0"/>
+  <circle cx="110" cy="128" r="3" fill="#e2e8f0"/>
+  <circle cx="120" cy="122" r="2" fill="#e2e8f0"/>
+  <text x="100" y="155" font-size="16" fill="#1e293b" text-anchor="middle" font-weight="bold">1kg</text>
+</svg>

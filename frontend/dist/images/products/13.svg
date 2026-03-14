@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" fill="#f8fafc"/>
+  <path d="M70 60 L130 60 L125 160 L75 160 Z" fill="#3b82f6"/>
+  <path d="M80 60 L120 60 L120 50 Q100 40 80 50 Z" fill="#3b82f6"/>
+  <rect x="85" y="55" width="30" height="8" fill="#1e40af"/>
+  <path d="M60 60 L70 60 L70 90 L60 80 Z" fill="#2563eb"/>
+  <path d="M140 60 L130 60 L130 90 L140 80 Z" fill="#2563eb"/>
+  <text x="100" y="100" font-size="10" fill="#ffffff" text-anchor="middle" font-weight="bold">MEN'S</text>
+  <text x="100" y="115" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="bold">T-SHIRT</text>
+  <text x="100" y="180" font-size="10" fill="#475569" text-anchor="middle">Cotton Blend</text>
+</svg>

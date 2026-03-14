@@ -1,0 +1,265 @@
+/* ========================================
+   Smart SuperMarket - Theme System
+   CSS Custom Properties for Dark/Light Mode
+   Updated Color Scheme: Green-Blue-Orange
+   ======================================== */
+
+/* ========== LIGHT MODE (DEFAULT) ========== */
+:root {
+  /* Brand Colors */
+  --color-brand-primary: #16A34A;      /* Fresh Retail Green */
+  --color-brand-secondary: #2563EB;    /* Smart Technology Blue */
+  --color-brand-accent: #F97316;       /* Promotions Orange */
+  
+  /* Semantic Colors */
+  --color-success: #22C55E;            /* Fresh Items Green */
+  --color-warning: #F59E0B;            /* Alerts Amber */
+  --color-active: #15803D;             /* Active Element Green */
+  
+  /* Backgrounds */
+  --bg-main: #F8FAFC;                  /* Main application background */
+  --bg-card: #FFFFFF;                  /* Card background */
+  --bg-section: #F1F5F9;               /* Section background */
+  --bg-hover: #E8F5E9;                 /* Hover state background */
+  
+  /* Text Colors */
+  --text-primary: #0F172A;             /* Primary text */
+  --text-secondary: #475569;           /* Secondary text */
+  --text-disabled: #64748B;            /* Disabled text - darker for 4.5:1 contrast */
+  
+  /* Borders */
+  --border-color: #64748B;             /* Border color - darker for 3:1 contrast */
+  
+  /* Legacy compatibility - map old variables to new ones */
+  --bg-primary: var(--bg-card);
+  --bg-secondary: var(--bg-section);
+  --bg-tertiary: var(--bg-main);
+  --bg-elevated: var(--bg-card);
+  
+  --accent-green: var(--color-brand-primary);
+  --accent-emerald: var(--color-success);
+  --accent-teal: #14b8a6;
+  --accent-yellow: var(--color-warning);
+  --accent-red: #ef4444;
+  
+  --color-danger: #ef4444;
+  --color-info: var(--color-brand-secondary);
+  
+  --border-primary: var(--border-color);
+  --border-secondary: #cbd5e1;
+  --border-focus: var(--color-brand-primary);
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--color-brand-primary) 0%, var(--color-active) 100%);
+  --gradient-secondary: linear-gradient(135deg, var(--color-brand-secondary) 0%, #1d4ed8 100%);
+  --gradient-accent: linear-gradient(135deg, var(--color-brand-accent) 0%, #ea580c 100%);
+}
+
+/* ========== DARK MODE ========== */
+[data-theme="dark"],
+.dark {
+  /* Brand Colors - Darker for better contrast with light text */
+  --color-brand-primary: #15803D;      /* Darker green for light text */
+  --color-brand-secondary: #1E40AF;    /* Darker blue for light text */
+  --color-brand-accent: #C2410C;       /* Darker orange for light text */
+  
+  /* Semantic Colors */
+  --color-success: #15803D;            /* Darker green for light text */
+  --color-warning: #B45309;            /* Darker amber for light text */
+  --color-active: #15803D;
+  
+  /* Backgrounds */
+  --bg-main: #0F172A;
+  --bg-card: #1E293B;
+  --bg-section: #334155;
+  --bg-hover: #1E3A28;
+  
+  /* Text Colors */
+  --text-primary: #F1F5F9;
+  --text-secondary: #CBD5E1;
+  --text-disabled: #94A3B8;            /* Disabled text - lighter for 4.5:1 contrast in dark mode */
+  
+  /* Borders */
+  --border-color: #64748B;             /* Border color - lighter for 3:1 contrast in dark mode */
+  
+  /* Legacy compatibility - map old variables to new ones */
+  --bg-primary: var(--bg-card);
+  --bg-secondary: var(--bg-section);
+  --bg-tertiary: var(--bg-main);
+  --bg-elevated: #334155;
+  
+  --accent-green: var(--color-success);
+  --accent-emerald: #34d399;
+  --accent-teal: #2dd4bf;
+  --accent-yellow: var(--color-warning);
+  --accent-red: #f87171;
+  
+  --color-danger: #f87171;
+  --color-info: var(--color-brand-secondary);
+  
+  --border-primary: var(--border-color);
+  --border-secondary: #475569;
+  --border-focus: var(--color-success);
+  
+  /* Shadows - Reduced intensity for dark mode */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  
+  /* Gradients - Adjusted for dark mode */
+  --gradient-primary: linear-gradient(135deg, var(--color-success) 0%, #34d399 100%);
+  --gradient-secondary: linear-gradient(135deg, var(--color-brand-secondary) 0%, #2563eb 100%);
+  --gradient-accent: linear-gradient(135deg, var(--color-brand-accent) 0%, #f97316 100%);
+}
+
+/* ========== SMOOTH TRANSITIONS ========== */
+* {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* ========== GLOBAL DARK MODE TEXT FIXES ========== */
+/* Text should use theme variables in dark mode */
+.dark {
+  color: var(--text-primary);
+}
+
+/* All text elements use theme variables in dark mode */
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6,
+.dark p,
+.dark span,
+.dark div,
+.dark label,
+.dark strong,
+.dark b,
+.dark li,
+.dark td,
+.dark th {
+  color: var(--text-primary) !important;
+}
+
+/* Links should be brand color */
+.dark a {
+  color: var(--color-brand-primary) !important;
+}
+
+.dark a:hover {
+  color: var(--color-success) !important;
+}
+
+/* Input text uses primary text color */
+.dark input,
+.dark textarea,
+.dark select {
+  color: var(--text-primary) !important;
+  background: var(--bg-elevated) !important;
+}
+
+/* Placeholder uses disabled text color */
+.dark input::placeholder,
+.dark textarea::placeholder,
+.dark select::placeholder {
+  color: var(--text-disabled) !important;
+}
+
+/* SVG icons visible */
+.dark svg {
+  color: var(--text-primary) !important;
+}
+
+/* Buttons keep their colors */
+.dark button {
+  color: inherit !important;
+}
+
+/* Disable transitions for elements that shouldn't animate */
+*:focus,
+*:active,
+input,
+textarea,
+select {
+  transition: none;
+}
+
+/* ========== TAILWIND DARK MODE OVERRIDES ========== */
+/* Override Tailwind's default colors with our theme variables */
+
+.dark {
+  color-scheme: dark;
+}
+
+/* Background overrides */
+.dark .bg-white { background-color: var(--bg-card) !important; }
+.dark .bg-gray-50 { background-color: var(--bg-section) !important; }
+.dark .bg-gray-100 { background-color: var(--bg-main) !important; }
+.dark .bg-gray-200 { background-color: var(--bg-elevated) !important; }
+
+/* Text color overrides - use theme variables */
+.dark .text-gray-900 { color: var(--text-primary) !important; }
+.dark .text-gray-800 { color: var(--text-primary) !important; }
+.dark .text-gray-700 { color: var(--text-primary) !important; }
+.dark .text-gray-600 { color: var(--text-secondary) !important; }
+.dark .text-gray-500 { color: var(--text-secondary) !important; }
+.dark .text-gray-400 { color: var(--text-disabled) !important; }
+.dark .text-gray-300 { color: var(--text-disabled) !important; }
+
+/* Border overrides */
+.dark .border-gray-100 { border-color: var(--border-color) !important; }
+.dark .border-gray-200 { border-color: var(--border-color) !important; }
+.dark .border-gray-300 { border-color: var(--border-secondary) !important; }
+
+/* Hover state overrides */
+.dark .hover\:bg-gray-50:hover { background-color: var(--bg-main) !important; }
+.dark .hover\:bg-gray-100:hover { background-color: var(--bg-elevated) !important; }
+.dark .hover\:bg-gray-200:hover { background-color: var(--bg-elevated) !important; }
+.dark .hover\:bg-gray-300:hover { background-color: var(--border-secondary) !important; }
+
+/* Hover text colors */
+.dark .hover\:text-gray-700:hover { color: var(--text-primary) !important; }
+.dark .hover\:text-gray-600:hover { color: var(--text-primary) !important; }
+.dark .hover\:text-gray-500:hover { color: var(--text-secondary) !important; }
+
+/* Focus overrides */
+.dark .focus\:border-gray-300:focus { border-color: var(--border-secondary) !important; }
+
+/* Gradient backgrounds in dark mode */
+.dark .bg-gradient-to-br { opacity: 0.8; }
+.dark .from-gray-50 { --tw-gradient-from: var(--bg-section) !important; }
+.dark .to-green-50 { --tw-gradient-to: var(--bg-main) !important; }
+
+/* Placeholder text in dark mode */
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: var(--text-disabled) !important;
+  opacity: 1;
+}
+
+/* Ensure all body text uses theme variables */
+.dark body,
+.dark p,
+.dark span,
+.dark div {
+  color: var(--text-primary);
+}
+
+/* Links should be visible */
+.dark a {
+  color: var(--color-brand-primary);
+}
+
+.dark a:hover {
+  color: var(--color-success);
+}

@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dark Mode Views Verification - Task 8.3</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      padding: 2rem;
+      background: #f8fafc;
+      color: #0f172a;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.dark {
+      background: #0f172a;
+      color: #f1f5f9;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+    body.dark header {
+      background: #1e293b;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+      color: #16a34a;
+      margin-bottom: 0.5rem;
+      font-size: 2rem;
+    }
+
+    body.dark h1 {
+      color: #22c55e;
+    }
+
+    .subtitle {
+      color: #475569;
+      font-size: 1rem;
+    }
+
+    body.dark .subtitle {
+      color: #cbd5e1;
+    }
+
+    .controls {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+    body.dark .controls {
+      background: #1e293b;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    button {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-weight: 500;
+    }
+
+    .btn-primary {
+      background: #2563eb;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+    }
+
+    body.dark .btn-primary {
+      background: #3b82f6;
+    }
+
+    body.dark .btn-primary:hover {
+      background: #2563eb;
+    }
+
+    .btn-success {
+      background: #22c55e;
+      color: white;
+    }
+
+    .btn-success:hover {
+      background: #16a34a;
+    }
+
+    body.dark .btn-success {
+      background: #4ade80;
+    }
+
+    body.dark .btn-success:hover {
+      background: #22c55e;
+    }
+
+    .theme-indicator {
+      margin-left: auto;
+      padding: 0.5rem 1rem;
+      background: #f1f5f9;
+      border-radius: 6px;
+      font-weight: 500;
+      transition: background-color 0.3s;
+    }
+
+    body.dark .theme-indicator {
+      background: #334155;
+    }
+
+    .views-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .view-card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    body.dark .view-card {
+      background: #1e293b;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .view-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    body.dark .view-card:hover {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+    }
+
+    .view-header {
+      padding: 1.5rem;
+      background: #f1f5f9;
+      border-bottom: 1px solid #e2e8f0;
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    body.dark .view-header {
+      background: #334155;
+      border-bottom: 1px solid #334155;
+    }
+
+    .view-name {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #0f172a;
+      margin-bottom: 0.25rem;
+    }
+
+    body.dark .view-name {
+      color: #f1f5f9;
+    }
+
+    .view-path {
+      font-size: 0.875rem;
+      color: #64748b;
+      font-family: 'Courier New', monospace;
+    }
+
+    body.dark .view-path {
+      color: #94a3b8;
+    }
+
+    .view-body {
+      padding: 1.5rem;
+    }
+
+    .checklist {
+      list-style: none;
+    }
+
+    .checklist li {
+      padding: 0.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #475569;
+      font-size: 0.9rem;
+    }
+
+    body.dark .checklist li {
+      color: #cbd5e1;
+    }
+
+    .checklist li::before {
+      content: '✓';
+      color: #22c55e;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    body.dark .checklist li::before {
+      color: #4ade80;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-top: 1rem;
+    }
+
+    .status-pass {
+      background: #dcfce7;
+      color: #15803d;
+    }
+
+    body.dark .status-pass {
+      background: #14532d;
+      color: #4ade80;
+    }
+
+    .instructions {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+    body.dark .instructions {
+      background: #1e293b;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .instructions h2 {
+      color: #0f172a;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    body.dark .instructions h2 {
+      color: #f1f5f9;
+    }
+
+    .instructions ol {
+      margin-left: 1.5rem;
+      color: #475569;
+    }
+
+    body.dark .instructions ol {
+      color: #cbd5e1;
+    }
+
+    .instructions li {
+      margin-bottom: 0.5rem;
+    }
+
+    .requirements {
+      background: #eff6ff;
+      border-left: 4px solid #2563eb;
+      padding: 1rem;
+      margin-top: 1rem;
+      border-radius: 4px;
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    body.dark .requirements {
+      background: #1e3a5f;
+      border-left-color: #3b82f6;
+    }
+
+    .requirements h3 {
+      color: #1e40af;
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    body.dark .requirements h3 {
+      color: #60a5fa;
+    }
+
+    .requirements ul {
+      margin-left: 1.5rem;
+      color: #1e40af;
+      font-size: 0.9rem;
+    }
+
+    body.dark .requirements ul {
+      color: #93c5fd;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #64748b;
+      font-size: 0.875rem;
+    }
+
+    body.dark footer {
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🌓 Dark Mode Views Verification</h1>
+      <p class="subtitle">Task 8.3: Test dark mode across all views | Requirements: 9.1, 9.2, 9.3, 9.4</p>
+    </header>
+
+    <div class="controls">
+      <button class="btn-primary" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+      <button class="btn-success" onclick="runAutomatedTest()">Run Automated Test</button>
+      <div class="theme-indicator">
+        Current Theme: <strong id="theme-display">Light</strong>
+      </div>
+    </div>
+
+    <div class="instructions">
+      <h2>📋 Manual Verification Instructions</h2>
+      <ol>
+        <li><strong>Toggle Dark Mode:</strong> Click the "Toggle Dark Mode" button above to switch between light and dark themes.</li>
+        <li><strong>Verify Visual Hierarchy:</strong> Ensure that in dark mode, backgrounds maintain clear visual separation (main → card → section).</li>
+        <li><strong>Check Text Readability:</strong> Verify that all text is readable with sufficient contrast in both light and dark modes.</li>
+        <li><strong>Inspect Color Consistency:</strong> Ensure brand colors (green, blue, orange) are visible and properly adjusted for dark backgrounds.</li>
+        <li><strong>Look for Artifacts:</strong> Check for any visual glitches, missing colors, or broken styling in dark mode.</li>
+        <li><strong>Test in Application:</strong> Navigate to each view in the actual application and verify dark mode works correctly.</li>
+      </ol>
+
+      <div class="requirements">
+        <h3>Requirements Being Validated:</h3>
+        <ul>
+          <li><strong>9.1:</strong> Color system provides appropriate dark mode variants for all colors</li>
+          <li><strong>9.2:</strong> Text system ensures sufficient contrast for readability in dark mode</li>
+          <li><strong>9.3:</strong> Primary brand color adjusted to #22C55E for better visibility in dark mode</li>
+          <li><strong>9.4:</strong> Background colors use dark variants while maintaining visual hierarchy</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 style="margin-bottom: 1rem; color: #0f172a; transition: color 0.3s;">Views to Verify</h2>
+
+    <div class="views-grid">
+      <div class="view-card">
+        <div class="view-header">
+          <div class="view-name">Dashboard</div>
+          <div class="view-path">src/views/admin/Dashboard.vue</div>
+        </div>
+        <div class="view-body">
+          <ul class="checklist">
+            <li>Stat cards display correctly</li>
+            <li>Charts maintain visibility</li>
+            <li>Background hierarchy clear</li>
+            <li>Text is readable</li>
+            <li>No visual artifacts</li>
+          </ul>
+          <div class="status-badge status-pass">Ready for Testing</div>
+        </div>
+      </div>
+
+      <div class="view-card">
+        <div class="view-header">
+          <div class="view-name">POS</div>
+          <div class="view-path">src/views/admin/POS.vue</div>
+        </div>
+        <div class="view-body">
+          <ul class="checklist">
+            <li>Product cards visible</li>
+            <li>Discount badges stand out</li>
+            <li>Cart summary readable</li>
+            <li>Buttons properly styled</li>
+            <li>No color issues</li>
+          </ul>
+          <div class="status-badge status-pass">Ready for Testing</div>
+        </div>
+      </div>
+
+      <div class="view-card">
+        <div class="view-header">
+          <div class="view-name">Products (Admin)</div>
+          <div class="view-path">src/views/admin/Products.vue</div>
+        </div>
+        <div class="view-body">
+          <ul class="checklist">
+            <li>Product catalog displays</li>
+            <li>Promotional badges visible</li>
+            <li>Filters work correctly</li>
+            <li>Cards have proper contrast</li>
+            <li>Visual hierarchy maintained</li>
+          </ul>
+          <div class="status-badge status-pass">Ready for Testing</div>
+        </div>
+      </div>
+
+      <div class="view-card">
+        <div class="view-header">
+          <div class="view-name">Products (Storefront)</div>
+          <div class="view-path">src/views/storefront/Products.vue</div>
+        </div>
+        <div class="view-body">
+          <ul class="checklist">
+            <li>Product grid displays</li>
+            <li>Sale prices visible</li>
+            <li>Search UI works</li>
+            <li>Images have proper borders</li>
+            <li>Text is readable</li>
+          </ul>
+          <div class="status-badge status-pass">Ready for Testing</div>
+        </div>
+      </div>
+
+      <div class="view-card">
+        <div class="view-header">
+          <div class="view-name">Checkout</div>
+          <div class="view-path">src/views/storefront/Checkout.vue</div>
+        </div>
+        <div class="view-body">
+          <ul class="checklist">
+            <li>Payment UI displays</li>
+            <li>Success indicators visible</li>
+            <li>Warning messages clear</li>
+            <li>Form fields readable</li>
+            <li>Status icons present</li>
+          </ul>
+          <div class="status-badge status-pass">Ready for Testing</div>
+        </div>
+      </div>
+
+      <div class="view-card">
+        <div class="view-header">
+          <div class="view-name">Inventory (Stock Alerts)</div>
+          <div class="view-path">src/views/admin/StockAlerts.vue</div>
+        </div>
+        <div class="view-body">
+          <ul class="checklist">
+            <li>Tables display correctly</li>
+            <li>Stock status indicators clear</li>
+            <li>Action buttons visible</li>
+            <li>Icons accompany colors</li>
+            <li>Borders visible</li>
+          </ul>
+          <div class="status-badge status-pass">Ready for Testing</div>
+        </div>
+      </div>
+
+      <div class="view-card">
+        <div class="view-header">
+          <div class="view-name">Reports</div>
+          <div class="view-path">src/views/admin/Reports.vue</div>
+        </div>
+        <div class="view-body">
+          <ul class="checklist">
+            <li>Report cards display</li>
+            <li>Data visualizations visible</li>
+            <li>Export buttons styled</li>
+            <li>Text hierarchy clear</li>
+            <li>No missing colors</li>
+          </ul>
+          <div class="status-badge status-pass">Ready for Testing</div>
+        </div>
+      </div>
+
+      <div class="view-card">
+        <div class="view-header">
+          <div class="view-name">Settings</div>
+          <div class="view-path">src/views/admin/Settings.vue</div>
+        </div>
+        <div class="view-body">
+          <ul class="checklist">
+            <li>Settings panels display</li>
+            <li>Form elements readable</li>
+            <li>Save/cancel buttons styled</li>
+            <li>Sections clearly separated</li>
+            <li>Visual hierarchy maintained</li>
+          </ul>
+          <div class="status-badge status-pass">Ready for Testing</div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>Dark Mode Views Verification Tool | Task 8.3 | Requirements 9.1, 9.2, 9.3, 9.4</p>
+      <p>Toggle dark mode and verify each view maintains proper visual hierarchy and readability.</p>
+    </footer>
+  </div>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+      const isDark = document.body.classList.contains('dark');
+      document.getElementById('theme-display').textContent = isDark ? 'Dark' : 'Light';
+      
+      // Save preference
+      localStorage.setItem('verification-theme', isDark ? 'dark' : 'light');
+    }
+
+    function runAutomatedTest() {
+      alert('To run the automated test, execute:\n\ncd frontend\nnode src/tests/verify-dark-mode-views.js\n\nThis will verify all views for dark mode compatibility.');
+    }
+
+    // Initialize theme from localStorage
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('verification-theme');
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark');
+        document.getElementById('theme-display').textContent = 'Dark';
+      }
+    });
+
+    // Update h2 color in dark mode
+    const style = document.createElement('style');
+    style.textContent = 'body.dark h2 { color: #f1f5f9; }';
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <rect width="100" height="100" fill="#ecfdf5"/>
+  <rect x="25" y="25" width="50" height="55" fill="#059669" rx="5"/>
+  <rect x="30" y="30" width="40" height="15" fill="#10b981" rx="3"/>
+  <text x="50" y="40" font-size="8" fill="#fff" text-anchor="middle" font-weight="bold">TEA</text>
+  <rect x="35" y="50" width="30" height="20" fill="#34d399" rx="2"/>
+  <text x="50" y="62" font-size="5" fill="#064e3b" text-anchor="middle">Premium</text>
+  <text x="50" y="70" font-size="5" fill="#065f46" text-anchor="middle">Leaves</text>
+</svg>

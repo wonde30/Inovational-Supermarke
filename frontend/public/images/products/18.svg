@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" fill="#f8fafc"/>
+  <ellipse cx="100" cy="160" rx="50" ry="15" fill="#0891b2"/>
+  <path d="M50 160 L60 60 L140 60 L150 160 Z" fill="#06b6d4"/>
+  <ellipse cx="100" cy="60" rx="40" ry="12" fill="#0e7490"/>
+  <ellipse cx="100" cy="60" rx="35" ry="8" fill="#22d3ee"/>
+  <path d="M70 50 Q100 30 130 50" stroke="#0891b2" stroke-width="8" fill="none"/>
+  <text x="100" y="120" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="bold">20L</text>
+  <text x="100" y="185" font-size="10" fill="#475569" text-anchor="middle" font-weight="bold">Plastic Bucket</text>
+</svg>

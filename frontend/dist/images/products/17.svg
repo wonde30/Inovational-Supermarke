@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" fill="#f8fafc"/>
+  <ellipse cx="60" cy="100" rx="30" ry="50" fill="#1e293b"/>
+  <ellipse cx="60" cy="100" rx="25" ry="45" fill="#334155"/>
+  <rect x="55" y="55" width="10" height="20" fill="#475569"/>
+  <ellipse cx="100" cy="100" rx="30" ry="50" fill="#ef4444"/>
+  <ellipse cx="100" cy="100" rx="25" ry="45" fill="#f87171"/>
+  <rect x="95" y="55" width="10" height="20" fill="#dc2626"/>
+  <ellipse cx="140" cy="100" rx="30" ry="50" fill="#22c55e"/>
+  <ellipse cx="140" cy="100" rx="25" ry="45" fill="#4ade80"/>
+  <rect x="135" y="55" width="10" height="20" fill="#16a34a"/>
+  <text x="100" y="180" font-size="10" fill="#475569" text-anchor="middle" font-weight="bold">Socks Pack (3)</text>
+</svg>

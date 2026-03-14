@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" fill="#f8fafc"/>
+  <rect x="60" y="40" width="80" height="120" rx="10" fill="#ef4444"/>
+  <rect x="65" y="45" width="70" height="110" rx="6" fill="#f87171"/>
+  <ellipse cx="100" cy="55" rx="25" ry="8" fill="#dc2626"/>
+  <rect x="90" y="35" width="20" height="15" fill="#b91c1c"/>
+  <text x="100" y="80" font-size="9" fill="#ffffff" text-anchor="middle" font-weight="bold">TOOTHPASTE</text>
+  <rect x="75" y="95" width="50" height="30" rx="5" fill="#fef2f2"/>
+  <ellipse cx="100" cy="110" rx="15" ry="8" fill="#fca5a5"/>
+  <text x="100" y="145" font-size="10" fill="#7f1d1d" text-anchor="middle" font-weight="bold">100ml</text>
+  <text x="100" y="180" font-size="8" fill="#475569" text-anchor="middle">Fresh Mint</text>
+</svg>

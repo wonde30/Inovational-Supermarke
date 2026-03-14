@@ -1,0 +1,258 @@
+{
+  "info": {
+    "name": "Smart SuperMarket - Chapa Payment",
+    "description": "API collection for testing Chapa payment integration",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000/api/v1",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "YOUR_AUTH_TOKEN_HERE",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Auth",
+      "item": [
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    var jsonData = pm.response.json();",
+                  "    if (jsonData.data && jsonData.data.token) {",
+                  "        pm.collectionVariables.set('token', jsonData.data.token);",
+                  "        console.log('Token saved:', jsonData.data.token);",
+                  "    }",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"customer@example.com\",\n  \"password\": \"password\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["auth", "login"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Products",
+      "item": [
+        {
+          "name": "Get Products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/storefront/products",
+              "host": ["{{base_url}}"],
+              "path": ["storefront", "products"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Checkout & Payment",
+      "item": [
+        {
+          "name": "Checkout with Chapa",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    var jsonData = pm.response.json();",
+                  "    if (jsonData.data && jsonData.data.order) {",
+                  "        pm.collectionVariables.set('order_id', jsonData.data.order.id);",
+                  "        console.log('Order ID:', jsonData.data.order.id);",
+                  "    }",
+                  "    if (jsonData.data && jsonData.data.payment) {",
+                  "        console.log('Checkout URL:', jsonData.data.payment.checkout_url);",
+                  "        console.log('Transaction ID:', jsonData.data.payment.transaction_id);",
+                  "    }",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"product_id\": 1,\n      \"quantity\": 2\n    },\n    {\n      \"product_id\": 5,\n      \"quantity\": 1\n    }\n  ],\n  \"payment_method\": \"chapa\",\n  \"shipping_address\": \"Kombolcha, Zone 1, Ethiopia\",\n  \"phone\": \"+251911234567\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/storefront/checkout",
+              "host": ["{{base_url}}"],
+              "path": ["storefront", "checkout"]
+            }
+          }
+        },
+        {
+          "name": "Pay for Existing Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"payment_method\": \"chapa\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/storefront/orders/{{order_id}}/pay",
+              "host": ["{{base_url}}"],
+              "path": ["storefront", "orders", "{{order_id}}", "pay"]
+            }
+          }
+        },
+        {
+          "name": "Check Payment Status",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/storefront/orders/{{order_id}}/payment-status",
+              "host": ["{{base_url}}"],
+              "path": ["storefront", "orders", "{{order_id}}", "payment-status"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Orders",
+      "item": [
+        {
+          "name": "Get My Orders",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/storefront/orders",
+              "host": ["{{base_url}}"],
+              "path": ["storefront", "orders"]
+            }
+          }
+        },
+        {
+          "name": "Get Order Details",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/storefront/orders/{{order_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["storefront", "orders", "{{order_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Admin - Payment Management",
+      "item": [
+        {
+          "name": "Initialize Payment (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order_id\": 1\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/payments/initialize",
+              "host": ["{{base_url}}"],
+              "path": ["payments", "initialize"]
+            }
+          }
+        },
+        {
+          "name": "Verify Payment (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/payments/TX-123456/verify",
+              "host": ["{{base_url}}"],
+              "path": ["payments", "TX-123456", "verify"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

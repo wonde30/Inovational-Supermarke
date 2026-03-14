@@ -1,0 +1,1 @@
+import{Q as t,c as r}from"./index-CcRFyznd.js";function o(){const e=t();return{t:e.t,locale:r(()=>e.currentLocale),isAmharic:r(()=>e.currentLocale==="am"),isEnglish:r(()=>e.currentLocale==="en")}}export{o as u};
